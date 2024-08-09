@@ -8,6 +8,7 @@ module.exports = {
     backend: './phpmyfaq/admin/assets/src/index.js',
     frontend: './phpmyfaq/assets/src/frontend.js',
     setup: './phpmyfaq/assets/src/setup.js',
+    svenstyles: './phpmyfaq/assets/themes/sven/scss/style.scss',
     styles: './phpmyfaq/assets/themes/default/scss/style.scss',
     admin: './phpmyfaq/admin/assets/scss/style.scss',
   },
