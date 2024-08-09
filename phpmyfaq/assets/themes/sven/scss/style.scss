@@ -1,0 +1,42 @@
+/**
+ * phpMyFAQ 3.2 default layout
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public License,
+ * v. 2.0. If a copy of the MPL was not distributed with this file, You can
+ * obtain one at https://mozilla.org/MPL/2.0/.
+ *
+ * @package   phpMyFAQ
+ * @author    Thorsten Rinne <thorsten@phpmyfaq.de>
+ * @copyright 2010-2023 phpMyFAQ Team
+ * @license   https://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
+ * @link      https://www.phpmyfaq.de
+ * @since     2010-01-17
+ */
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
+// Import Theme
+@import 'theme';
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+// Import Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Import global styles
+@import 'global';
+
+// Fork Awesome
+$fa-font-path: '~fork-awesome/fonts';
+@import '~fork-awesome/scss/fork-awesome';
+
+// Cookie Consent
+@import 'vanilla-cookieconsent/dist/cookieconsent.css';
+
+// Layouts
+@import 'layout/autocomplete';
+@import 'layout/faq';
+@import 'layout/login';
+@import 'layout/navigation';
+@import 'layout/setup';

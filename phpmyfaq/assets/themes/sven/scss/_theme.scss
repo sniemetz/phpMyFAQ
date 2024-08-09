@@ -1,0 +1,21 @@
+$custom-colors: (
+  'light': #bbc3c7,
+  'dark': #2B3D4C,
+  'primary': #5170a2,
+  'secondary': #7091b3,
+  'info': #96e9b0,
+  'success': #45c17a,
+  'warning': #ebd33c,
+  'danger': #f92f2b,
+);
+
+div.search {width: 7.5rem;}
+
+div.search form i, div.advsearch, div.search button.searchbar-submit {
+  visibility:hidden;
+}
+
+div.utilmenu a.dropdown-toggle {
+  white-space: normal;  
+}
+
