@@ -23,6 +23,9 @@ import { calculateReadingTime, handlePasswordStrength, handlePasswordToggle, han
 import './utils/cookie-consent';
 import './utils/tooltip';
 
+import { expandSearchForm } from './themesjs/sven/custom';
+expandSearchForm();
+
 //
 // Reload Captchas
 //
