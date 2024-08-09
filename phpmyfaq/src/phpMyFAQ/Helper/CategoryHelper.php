@@ -90,21 +90,22 @@ class CategoryHelper extends Helper
         $decks = '';
         foreach ($categories as $category) {
             $decks .= '<div class="col">';
-            $decks .= '  <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-3 shadow-lg p-1" ';
+            $decks .= '  <div class="justify-content-center card card-cover h-100 overflow-hidden text-bg-dark rounded-3 shadow-lg p-1" ';
             if ('' !== $category['image']) {
                 $decks .= sprintf(
                     'style="%s background-image: url(\'%s\')"',
-                    'background-size: cover; background-repeat: no-repeat; background-position: center center;',
+                    'background-size: 15%; background-repeat: no-repeat; background-position: right center;',
                     $category['image']
                 );
             }
             $decks .= '>';
             $decks .= sprintf(
-                '<h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">%s</h3>',
+                '<h3 class="pt-2 mt-0 mb-2 display-8 lh-1 fw-bold"><a class="text-decoration-none text-white" href="%s"">%s</a></h3>',
+                Strings::htmlentities($category['url']),
                 Strings::htmlentities($category['name'])
             );
-            $decks .= '   <a class="btn btn-primary" href="' .
-                Strings::htmlentities($category['url']) . '">' . Translation::get('msgGoToCategory') . '</a>';
+//            $decks .= '   <a class="btn btn-primary" href="' .
+//                Strings::htmlentities($category['url']) . '">' . Translation::get('msgGoToCategory') . '</a>';
             $decks .= '  </div>';
             $decks .= '</div>';
         }
