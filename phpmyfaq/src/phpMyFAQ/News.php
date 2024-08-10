@@ -66,7 +66,7 @@ class News
             }
 
             $output .=  '
-            <div class="card newsitem mb-1">
+            <div class="card newsitem mb-2 p-2">
                 <div class="card-body">
             ';
             $output .= sprintf(
@@ -80,8 +80,11 @@ class News
                 Strings::htmlentities($item['header']),
                 $date->format($item['date'])
             );
-
-            $output .= sprintf('<div class=newscontent>%s</div>', $item['content']);
+            
+            $content = ($item['presentation'] == "text") ? 
+                Utils::makeShorterText(strip_tags((string) $item['content'],"<br><p>"), 20) : $item['content'];
+            
+            $output .= sprintf('<div class=newscontent>%s</div>', $content);
 
             $output .=  '
                 </div>
@@ -163,6 +166,7 @@ class News
                         'link' => $row->link,
                         'linkTitle' => $row->linktitel,
                         'target' => $row->target,
+                        'presentation' => $row->presentation,
                         'url' => $oLink->toString()
                     ];
                     $news[] = $item;
@@ -262,7 +266,8 @@ class News
                     'allowComments' => $allowComments,
                     'link' => $row->link,
                     'linkTitle' => $row->linktitel,
-                    'target' => $row->target
+                    'target' => $row->target,
+                    'presentation' => $row->presentation
                 ];
             }
         }
@@ -282,9 +287,9 @@ class News
             INSERT INTO
                 %sfaqnews
             (id, datum, lang, header, artikel, author_name, author_email, date_start, date_end, active, comment,
-            link, linktitel, target)
+            link, linktitel, target, presentation)
                 VALUES
-            (%d, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+            (%d, '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
             Database::getTablePrefix(),
             $this->config->getDb()->nextId(Database::getTablePrefix() . 'faqnews', 'id'),
             $data['date'],
@@ -299,7 +304,8 @@ class News
             $data['comment'],
             $this->config->getDb()->escape($data['link']),
             $this->config->getDb()->escape($data['linkTitle']),
-            $data['target']
+            $data['target'],
+            $data['presentation']
         );
 
         if (!$this->config->getDb()->query($query)) {
@@ -334,7 +340,8 @@ class News
                 comment = '%s',
                 link = '%s',
                 linktitel = '%s',
-                target = '%s'
+                target = '%s',
+                presentation = '%s'
             WHERE
                 id = %d",
             Database::getTablePrefix(),
@@ -351,6 +358,7 @@ class News
             $this->config->getDb()->escape($data['link']),
             $this->config->getDb()->escape($data['linkTitle']),
             $data['target'],
+            $data['presentation'],
             $id
         );
 

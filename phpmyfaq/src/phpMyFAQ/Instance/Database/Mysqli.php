@@ -257,6 +257,7 @@ class Mysqli extends Database implements Driver
             link VARCHAR(255) DEFAULT NULL,
             linktitel VARCHAR(255) DEFAULT NULL,
             target VARCHAR(255) NOT NULL,
+            presentation VARCHAR(4) NOT NULL DEFAULT \'text\',
             PRIMARY KEY (id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB',
 
         'faqquestions' => 'CREATE TABLE %sfaqquestions (

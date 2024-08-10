@@ -252,6 +252,7 @@ class Sqlsrv extends Database implements Driver
             link NVARCHAR(255) DEFAULT NULL,
             linktitel NVARCHAR(255) DEFAULT NULL,
             target NVARCHAR(255) NOT NULL,
+            presentation VARCHAR(4) NOT NULL DEFAULT \'text\',
             PRIMARY KEY (id))',
 
         'faqquestions' => 'CREATE TABLE %sfaqquestions (

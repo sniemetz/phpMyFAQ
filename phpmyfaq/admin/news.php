@@ -69,6 +69,26 @@ if ('add-news' == $action && $user->perm->hasPermission($user->getUserId(), 'add
             </div>
 
             <div class="row mb-2">
+                <label class="col-3 col-form-label" for="presentation">
+                <?= Translation::get('ad_news_presentation') ?>
+                </label>
+                <div class="col-9">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="presentation" id="presentation1"
+                            value="html">
+                        <label class="form-check-label" for="inlineCheckbox1">HTML</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="presentation" id="presentation2"
+                           value="text" checked>
+                        <label class="form-check-label" for="inlineCheckbox1">Text</label>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row mb-2">
                 <label class="col-3 col-form-label" for="authorName">
                 <?= Translation::get('ad_news_author_name') ?>
                 </label>
@@ -291,7 +311,25 @@ if ('add-news' == $action && $user->perm->hasPermission($user->getUserId(), 'add
                     } ?></textarea>
                 </div>
             </div>
-
+            <div class="row mb-2">
+                <label class="col-3 col-form-label" for="presentation">
+                <?= Translation::get('ad_news_presentation') ?>
+                </label>
+                <div class="col-9">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="presentation" id="presentation1"
+                            value="html"<?php
+                                if($newsData['presentation']=="html") echo ' checked';?>>
+                        <label class="form-check-label" for="inlineCheckbox1">HTML</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="presentation" id="presentation2"
+                           value="text"<?php
+                                if($newsData['presentation']=="text") echo ' checked';?>>
+                        <label class="form-check-label" for="inlineCheckbox1">Text</label>
+                    </div>
+                </div>
+            </div>
             <div class="row mb-2">
                 <label class="col-3 col-form-label" for="authorName">
                 <?= Translation::get('ad_news_author_name') ?>
@@ -472,8 +510,9 @@ if ('add-news' == $action && $user->perm->hasPermission($user->getUserId(), 'add
     $linkTitle = Filter::filterInput(INPUT_POST, 'linkTitle', FILTER_SANITIZE_SPECIAL_CHARS);
     $newsLang = Filter::filterInput(INPUT_POST, 'langTo', FILTER_SANITIZE_SPECIAL_CHARS);
     $target = Filter::filterInput(INPUT_POST, 'target', FILTER_SANITIZE_SPECIAL_CHARS);
+    $presentation = Filter::filterInput(INPUT_POST, 'presentation', FILTER_SANITIZE_SPECIAL_CHARS);
 
-    $newsData = ['lang' => $newsLang, 'header' => $header, 'content' => html_entity_decode((string) $content), 'authorName' => $author, 'authorEmail' => $email, 'active' => (is_null($active)) ? 'n' : 'y', 'comment' => (is_null($comment)) ? 'n' : 'y', 'dateStart' => (empty($dateStart)) ? '00000000000000' : str_replace('-', '', (string) $dateStart) . '000000', 'dateEnd' => (empty($dateEnd)) ? '99991231235959' : str_replace('-', '', (string) $dateEnd) . '235959', 'link' => $link, 'linkTitle' => $linkTitle, 'date' => date('YmdHis'), 'target' => (is_null($target)) ? '' : $target];
+    $newsData = ['lang' => $newsLang, 'header' => $header, 'content' => html_entity_decode((string) $content), 'authorName' => $author, 'authorEmail' => $email, 'active' => (is_null($active)) ? 'n' : 'y', 'comment' => (is_null($comment)) ? 'n' : 'y', 'dateStart' => (empty($dateStart)) ? '00000000000000' : str_replace('-', '', (string) $dateStart) . '000000', 'dateEnd' => (empty($dateEnd)) ? '99991231235959' : str_replace('-', '', (string) $dateEnd) . '235959', 'link' => $link, 'linkTitle' => $linkTitle, 'date' => date('YmdHis'), 'target' => (is_null($target)) ? '' : $target, 'presentation' => $presentation];
 
     if ($news->addNewsEntry($newsData)) {
         echo Alert::success('ad_news_updatesuc');
@@ -509,6 +548,7 @@ if ('add-news' == $action && $user->perm->hasPermission($user->getUserId(), 'add
     $linkTitle = Filter::filterInput(INPUT_POST, 'linkTitle', FILTER_SANITIZE_SPECIAL_CHARS);
     $newsLang = Filter::filterInput(INPUT_POST, 'langTo', FILTER_SANITIZE_SPECIAL_CHARS);
     $target = Filter::filterInput(INPUT_POST, 'target', FILTER_SANITIZE_SPECIAL_CHARS);
+    $presentation = Filter::filterInput(INPUT_POST, 'presentation', FILTER_SANITIZE_SPECIAL_CHARS);
 
     $newsData = [
         'lang' => $newsLang,
@@ -523,7 +563,8 @@ if ('add-news' == $action && $user->perm->hasPermission($user->getUserId(), 'add
         'link' => $link,
         'linkTitle' => $linkTitle,
         'date' => date('YmdHis'),
-        'target' => (is_null($target)) ? '' : $target,
+        'target' => (is_null($target)) ? '' : $target, 
+        'presentation' => $presentation
     ];
 
     $newsId = Filter::filterInput(INPUT_POST, 'id', FILTER_VALIDATE_INT);

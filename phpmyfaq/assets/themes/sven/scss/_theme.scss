@@ -21,6 +21,7 @@ div.utilmenu a.dropdown-toggle {
 .card.newsitem {
   font-size: 80%;
   border: none;
+  box-shadow: 0px 3px 5px 0px #ccc;
 }
 .card.newsitem .card-body {
   padding: 0;
@@ -30,4 +31,14 @@ ol.faqlist li small {
   margin-left: 1rem;
   font-size: 80%;
   display: block;
+}
+
+section#wrapper {
+  position:relative; 
+  margin-top: 8rem !important;
+}
+
+footer {
+  position:relative; 
+  margin-top: 6rem;
 }

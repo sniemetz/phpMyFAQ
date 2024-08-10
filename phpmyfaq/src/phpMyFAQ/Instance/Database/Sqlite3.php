@@ -252,6 +252,7 @@ class Sqlite3 extends Database implements Driver
             link VARCHAR(255) DEFAULT NULL,
             linktitel VARCHAR(255) DEFAULT NULL,
             target VARCHAR(255) NOT NULL,
+            presentation VARCHAR(4) NOT NULL DEFAULT \'text\',
             PRIMARY KEY (id))',
 
         'faqquestions' => 'CREATE TABLE %sfaqquestions (

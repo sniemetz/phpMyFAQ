@@ -686,6 +686,7 @@ $PMF_LANG['ad_export_gen_xhtml'] = 'Create XHTML file';
 
 // added v2.0.0 - 2006-07-22 by Matteo
 $PMF_LANG['ad_news_data'] = 'FAQ News';
+$PMF_LANG['ad_news_presentation'] = 'Presentation on Start page:';
 $PMF_LANG['ad_news_author_name'] = 'Author name:';
 $PMF_LANG['ad_news_author_email'] = 'Author email:';
 $PMF_LANG['ad_news_set_active'] = 'Activate';
