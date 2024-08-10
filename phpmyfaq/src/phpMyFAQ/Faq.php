@@ -1880,7 +1880,7 @@ class Faq
     public function getLatest(): array
     {
         $date = new Date($this->config);
-        $result = $this->getLatestData(PMF_NUMBER_RECORDS_LATEST, $this->config->getLanguage()->getLanguage());
+        $result = $this->getLatestData(10, $this->config->getLanguage()->getLanguage());
         $output = [];
 
         if (count($result) > 0) {
@@ -1888,7 +1888,7 @@ class Faq
                 $output['url'][] = Strings::htmlentities($row['url']);
                 $output['title'][] = Strings::htmlentities(Utils::makeShorterText($row['question'], 8));
                 $output['preview'][] = Strings::htmlentities($row['question']);
-                $output['date'][] = $date->format($row['date']);
+                $output['date'][] = date_format(date_create($row["date"]), "m/n/y H:i")." GMT";
             }
         } else {
             $output['error'] = Translation::get('err_noArticles');

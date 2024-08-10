@@ -41,7 +41,7 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title text-center">{{ writeTopTenHeader }}</h5>
-        <ol class="list-unstyled">
+        <ol class="list-unstyled faqlist">
           [toptenList]
           <li class="mb-1">
             <a
@@ -70,7 +70,7 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title text-center">{{ writeNewestHeader }}</h5>
-        <ol class="list-unstyled">
+        <ol class="list-unstyled faqlist">
           [latestEntriesList]
           <li class="mb-1">
             <a
@@ -80,8 +80,7 @@
               title="{{ latestEntriesPreview }}"
               href="{{ latestEntriesUrl }}"
               >{{ latestEntriesTitle }}</a
-            >
-            <small>({{ latestEntriesDate }})</small>
+            ><small>{{ latestEntriesDate }}</small>
           </li>
           [/latestEntriesList] [latestEntriesListError]
           <li>{{ errorMsgLatest }}</li>
