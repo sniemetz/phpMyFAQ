@@ -327,6 +327,27 @@ class CategoryRelation
         return true;
     }
 
+    
+    /**
+     * Replaces a category relation for a given category
+     *
+     * @param int    $categoryId Category id
+     * @param string $categoryLang Category language
+     * @param bool   $replacementCatId Category Id
+     */
+    public function replace(int $categoryId, string $categoryLang, int $replacementCatId): bool
+    {
+        $query = sprintf(
+            "UPDATE  %sfaqcategoryrelations set category_id = %s WHERE category_id = %d AND category_lang = '%s'",
+            Database::getTablePrefix(),
+            $replacementCatId,
+            $categoryId,
+            $this->config->getDb()->escape($categoryLang)
+        );
+
+        return (bool) $this->config->getDb()->query($query);
+    }
+    
     /**
      * Deletes a category relation for a given category
      *

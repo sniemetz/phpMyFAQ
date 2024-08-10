@@ -38,13 +38,14 @@ if ($user->perm->hasPermission($user->getUserId(), 'delcateg')) {
     $category->setUser($currentAdminUser);
     $category->setGroups($currentAdminGroups);
     $categories = $category->getAllCategories();
-
+    
     $categoryHelper = new CategoryHelper();
     $categoryHelper
         ->setConfiguration($faqConfig)
         ->setCategory($category);
 
     $id = Filter::filterInput(INPUT_GET, 'cat', FILTER_VALIDATE_INT, 0);
+    $category->buildCategoryTree(0,0,$id);
     ?>
   <div class="row">
     <div class="col-lg-12">
@@ -61,7 +62,20 @@ if ($user->perm->hasPermission($user->getUserId(), 'delcateg')) {
                    value="<?= $categories[$id]['name'] ?>">
           </div>
         </div>
-
+        <!-- Categories -->
+        <div class="row mb-2">
+            <label class="col-lg-2 col-form-label" for="phpmyfaq-categories">
+                <?= Translation::get('ad_replacement_category') ?>
+            </label>
+            <div class="col-lg-10">
+                <select name="replacementCat" id="phpmyfaq-categories" size="5"
+                        class="form-control">
+                
+                        <?= $categoryHelper->renderOptions($categories) ?>
+                
+                  </select>
+            </div>
+        </div>
         <div class="row mb-2">
           <label class="col-lg-2 col-form-label" for="lang">
               <?= Translation::get('ad_entry_locale') ?>:

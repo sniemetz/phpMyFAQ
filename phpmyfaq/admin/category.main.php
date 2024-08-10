@@ -273,7 +273,8 @@ if (!defined('IS_VALID_PHPMYFAQ')) {
             ) {
                 $categoryId = Filter::filterInput(INPUT_POST, 'cat', FILTER_VALIDATE_INT);
                 $categoryLang = Filter::filterInput(INPUT_POST, 'lang', FILTER_SANITIZE_SPECIAL_CHARS);
-
+                $replacementCatId = Filter::filterInput(INPUT_POST, 'replacementCat', FILTER_VALIDATE_INT);
+                
                 $category = new Category($faqConfig, [], false);
                 $category->setUser($currentAdminUser);
                 $category->setGroups($currentAdminGroups);
@@ -282,16 +283,23 @@ if (!defined('IS_VALID_PHPMYFAQ')) {
 
                 $categoryImage = new CategoryImage($faqConfig);
                 $categoryImage->setFileName($category->getCategoryData($categoryId)->getImage() ?? '');
-
+ 
+                // check that replacment is not null
+                if (is_null($replacementCatId)) {
+                    echo Alert::danger('ad_categ_replreqd');
+                    exit();
+                }
+                
                 if ((is_countable($category->getCategoryLanguagesTranslated($categoryId)) ? count($category->getCategoryLanguagesTranslated($categoryId)) : 0) === 1) {
                     $categoryPermission->delete(CategoryPermission::USER, [$categoryId]);
                     $categoryPermission->delete(CategoryPermission::GROUP, [$categoryId]);
                     $categoryImage->delete();
                 }
 
-                if (
-                    $category->deleteCategory($categoryId, $categoryLang) &&
-                    $categoryRelation->delete($categoryId, $categoryLang)
+                if ( 
+                    $categoryRelation->replace($categoryId, $categoryLang, $replacementCatId) &&
+                    $category->deleteCategory($categoryId, $categoryLang) 
+                    
                 ) {
                     echo Alert::success('ad_categ_deleted');
                 } else {

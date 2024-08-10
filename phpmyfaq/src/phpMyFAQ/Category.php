@@ -431,15 +431,17 @@ class Category
      *
      * @param int $parentId Parent id
      * @param int $indent Indention
+     * @param int $cat category to filter out - used when removing a category
+     * 
      */
-    public function buildCategoryTree(int $parentId = 0, int $indent = 0)
+    public function buildCategoryTree(int $parentId = 0, int $indent = 0, int $cat = 0)
     {
         $tt = [];
         $x = 0;
 
         foreach ($this->categories as $categoryId => $n) {
             if (isset($n['parent_id']) && $n['parent_id'] == $parentId && $categoryId > 0) {
-                $tt[$x++] = $categoryId;
+                if ($categoryId != $cat ) $tt[$x++] = $categoryId;
             }
         }
 
