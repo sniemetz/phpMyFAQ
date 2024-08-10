@@ -31,7 +31,7 @@
                 title="{{ header }}"
                 class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none"
               >
-                <img alt="phpMyFAQ" src="{{ baseHref }}assets/themes/{{ tplSetName }}/img/logo.png" />
+                <img width="100%" alt="phpMyFAQ" src="{{ baseHref }}assets/themes/{{ tplSetName }}/img/logo.png" />
               </a>
           </div>
           <div class="col-md-8" style="position:relative">
@@ -46,7 +46,7 @@
             <div style="position: absolute;top: 0;right:  0;z-index: 100;" class="searchcontainer">
               <!-- SEARCH -->
               <div class="pull-right search">
-                <form action="{{ formActionUrl }}" id="search" method="post" role="search">
+                <form action="{{ formActionUrl }}" id="search" method="get" role="search">
                   <i class="fa fa-search"></i>
                   <input
                     autocomplete="off"
@@ -58,8 +58,8 @@
                     maxlength="255"
                     value="{{ searchTerm }}"
                   />
-                  <button data-toggle="button" type="button" class="searchclosed  btn btn-info btn-lg">{{ searchBox }}</button>
-                  <button type="submit" class="searchbar-submit btn btn-info btn-lg">{{ searchBox }}</button>
+                  <button data-toggle="button" type="button" class="searchclosed  btn btn-info btn-md">{{ searchBox }}</button>
+                  <button type="submit" class="searchbar-submit btn btn-info btn-md">{{ searchBox }}</button>
                 </form>
               </div>
               <div class="advsearch">
