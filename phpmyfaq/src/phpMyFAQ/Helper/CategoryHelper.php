@@ -90,7 +90,7 @@ class CategoryHelper extends Helper
         $decks = '';
         foreach ($categories as $category) {
             $decks .= '<div class="col">';
-            $decks .= '  <div class="justify-content-center card card-cover h-100 overflow-hidden text-bg-dark rounded-3 shadow-lg p-1" ';
+            $decks .= '  <div class="justify-content-center card card-cover h-100 overflow-hidden text-bg-dark rounded-3 shadow-lg p-2" ';
             if ('' !== $category['image']) {
                 $decks .= sprintf(
                     'style="%s background-image: url(\'%s\')"',

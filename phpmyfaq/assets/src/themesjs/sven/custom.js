@@ -60,14 +60,11 @@ export const expandSearchForm = () => {
     const expand = function (e) {
         e.stopPropagation();
         if ( document.querySelector("div.topmenu").style.visibility == 'hidden' ) {
-            console.log("top menu hidden")
             if ( document.querySelector('form#search input.searchbar-input').value == "" ) {
-                console.log("no vale - reset")
                 doReset();
             }
             return;
         }
-        console.log("top menu visible ")
         doExpand();
     }
 
