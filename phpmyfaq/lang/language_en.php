@@ -118,7 +118,7 @@ $PMF_LANG["msgNewContentArticle"] = "Your answer";
 $PMF_LANG["msgNewContentKeywords"] = "Keywords";
 $PMF_LANG["msgNewContentLink"] = "Link for this FAQ";
 $PMF_LANG["msgNewContentSubmit"] = "submit";
-$PMF_LANG["msgInfo"] = "More information: ";
+$PMF_LANG["msgInfo"] = "Source: ";
 $PMF_LANG["msgNewContentThanks"] = "Thank you for your suggestion!";
 
 // ask Question

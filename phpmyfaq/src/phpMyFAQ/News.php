@@ -55,34 +55,40 @@ class News
                 $item['id'],
                 $item['lang']
             );
+            
+            // set to source URL if present
+            $url = ( $item['link'] ) ? Strings::htmlentities($item['link']) : $url;
 
-            $oLink = new Link($url, $this->config);
+            $oLink = new Link($url, $this->config) ;
 
             if (isset($item['header'])) {
                 $oLink->itemTitle = Strings::htmlentities($item['header']);
             }
 
+            $output .=  '
+            <div class="card newsitem mb-1">
+                <div class="card-body">
+            ';
             $output .= sprintf(
-                '<h5%s><a id="news_%d" href="%s">%s</a> <i aria-hidden="true" class="fa fa-caret-right"></i></h6>',
-                ' class="mt-3 pmf-news-heading"',
+                '<h5%s><a target="%s" id="news_%d" href="%s">%s</a> <i aria-hidden="true" class="fa fa-caret-right"></i>'
+                .'</h5>'
+                . '<small class="text-muted ms-1">%s</small>', 
+                ' class="mb-0 pmf-news-heading"',
+                $item['target'],
                 $item['id'],
                 Strings::htmlentities($oLink->toString()),
-                Strings::htmlentities($item['header'])
+                Strings::htmlentities($item['header']),
+                $date->format($item['date'])
             );
 
-            $output .= sprintf('%s', strip_tags($item['content']));
+            $output .= sprintf('<div class=newscontent>%s</div>', $item['content']);
 
-            if (strlen((string) $item['link']) > 1) {
-                $output .= sprintf(
-                    '<br>%s <a href="%s" target="_%s">%s</a>',
-                    Translation::get('msgInfo'),
-                    Strings::htmlentities($item['link']),
-                    $item['target'],
-                    Strings::htmlentities($item['linkTitle'])
-                );
-            }
+            $output .=  '
+                </div>
+            </div>
+            ';
 
-            $output .= sprintf('<small class="text-muted ms-1">%s</small>', $date->format($item['date']));
+
         }
 
         return ('' == $output) ? Translation::get('msgNoNews') : $output;

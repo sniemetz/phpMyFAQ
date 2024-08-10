@@ -18,4 +18,10 @@ div.search form i, div.advsearch, div.search button.searchbar-submit {
 div.utilmenu a.dropdown-toggle {
   white-space: normal;  
 }
-
+.card.newsitem {
+  font-size: 80%;
+  border: none;
+}
+.card.newsitem .card-body {
+  padding: 0;
+}
