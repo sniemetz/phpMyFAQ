@@ -82,7 +82,7 @@ class News
             );
             
             $content = ($item['presentation'] == "text") ? 
-                Utils::makeShorterText(strip_tags((string) $item['content'],"<br><p>"), 20) : $item['content'];
+                Utils::makeShorterText(strip_tags((string) $item['content'],"<br><p>"), 60) : $item['content'];
             
             $output .= sprintf('<div class=newscontent>%s</div>', $content);
 
