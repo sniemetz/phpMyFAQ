@@ -9,6 +9,8 @@ $custom-colors: (
   'danger': #f92f2b,
 );
 
+ul.autocomplete { z-index: 10000;} 
+
 div.search {width: 5rem;}
 
 div.search form i, div.advsearch, div.search button.searchbar-submit {

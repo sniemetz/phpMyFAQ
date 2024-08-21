@@ -37,6 +37,12 @@ export const expandSearchForm = () => {
     
         document.removeEventListener('keydown', reset);
         document.removeEventListener('click', reset);
+        
+        document.querySelector("input.searchbar-input").value="";
+        document.querySelector('form#search button.searchclosed').style.visibility = "visible";
+        document.querySelector('form#search button.searchbar-submit').style.visibility = "hidden";
+        
+
 
     }
     const reset = function (e) {
@@ -69,6 +75,7 @@ export const expandSearchForm = () => {
     }
 
     const doExpand = function () {
+        
         document.querySelectorAll("div.topmenu").forEach((o) => {
             o.style.visibility = "hidden";
         });
@@ -86,6 +93,10 @@ export const expandSearchForm = () => {
     
         document.addEventListener('keydown', reset);
         document.addEventListener('mousedown', reset);
+
+        document.querySelector("input.searchbar-input").focus();
+        document.querySelector("input.searchbar-input").select();
+
 
     }
     
