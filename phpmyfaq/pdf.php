@@ -123,7 +123,7 @@ if (true === $getAll && $user->perm->hasPermission($user->getUserId(), 'export')
     $faq->getRecord($id);
     $faq->faqRecord['category_id'] = $currentCategory;
 
-    $filename = 'FAQ-' . $id . '-' . $lang . '.pdf';
+    $xfilename = $faq->faqRecord['title'] . '_' . 'ID' . $id . '_' . $lang . '.pdf';
     $pdfFile = $pdf->generateFile($faq->faqRecord, $filename);
 }
 

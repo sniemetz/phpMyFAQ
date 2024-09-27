@@ -529,6 +529,28 @@ class Category
     }
 
     /**
+     * List in array thenames of the root, super-root, ... of the $id.
+     */
+     function getNodesNames(int $id): array
+    {
+        if (($id > 0) && (isset($this->categoryName[$id]['level']))) {
+            $thisLevel = $this->categoryName[$id]['level'];
+            $temp = [];
+            $name = $this->categoryName[$id]['name'];
+            array_unshift($temp, $name);
+            for ($i = $thisLevel-1; $i > 0; --$i) {
+                $id = $this->categoryName[$id]['parent_id'];
+                $name = $this->categoryName[$id]['name'];
+                array_unshift($temp, $name);
+            }
+
+            return $temp;
+        }
+
+        return [];
+    }
+
+    /**
      * List in array the root, super-root, ... of the $id.
      */
     private function getNodes(int $id): array
@@ -702,15 +724,17 @@ class Category
         string $useCssClass = 'breadcrumb'
     ): string {
         global $sids;
-
         $ids = $this->getNodes($id);
 
         $num = count($ids);
 
         $tempName = $categoryId = $description = $breadcrumb = [];
+        print_r($ids);
+        print_r($this->treeTab);
 
         for ($i = 0; $i < $num; ++$i) {
             $t = $this->getLineCategory($ids[$i]);
+
             if (array_key_exists($t, $this->treeTab)) {
                 $tempName[] = $this->treeTab[$this->getLineCategory($ids[$i])]['name'];
                 $categoryId[] = $this->treeTab[$this->getLineCategory($ids[$i])]['id'];

@@ -89,7 +89,8 @@ class Pdf extends Export
         $this->category->transform($categoryId);
 
         $this->pdf->setCategory($categoryId);
-        $this->pdf->setCategories($this->category->categoryName);
+        $this->pdf->setCategories($this->category->getNodesNames($categoryId));
+        
         $this->pdf->SetCreator($this->config->getTitle() . ' - ' . System::getPoweredByString());
 
         $faqData = $this->faq->get(FAQ_QUERY_TYPE_EXPORT_XML, $categoryId, $downwards, $language);
@@ -177,13 +178,15 @@ class Pdf extends Export
     {
         // Default filename: FAQ-<id>-<language>.pdf
         if (empty($filename)) {
-            $filename = "FAQ-{$faqData['id']}-{$faqData['lang']}.pdf";
+            $filename = $faqData['title'] . '_' . 'ID' . $faqData['id']  . '_' . $faqData['lang'] . '.pdf';
+            //FAQ-{$faqData['id']}-{$faqData['lang']}.pdf";
         }
 
         $this->pdf->setFaq($faqData);
         $this->pdf->setCategory($faqData['category_id']);
         $this->pdf->setQuestion($faqData['title']);
-        $this->pdf->setCategories($this->category->categoryName);
+//        $this->pdf->setCategories($this->category->categoryName);
+        $this->pdf->setCategories($this->category->getNodesNames($faqData['category_id']));
 
         // Set any item
         $this->pdf->SetTitle($faqData['title']);
@@ -193,9 +196,9 @@ class Pdf extends Export
         $this->pdf->SetFont($this->pdf->getCurrentFont(), '', 10);
         $this->pdf->SetDisplayMode('real');
         $this->pdf->Ln();
-        $this->pdf->WriteHTML('<h2>' . $faqData['title'] . '</h2>');
+ //       $this->pdf->WriteHTML('<h2>#' .  $faqData['id'] . ": " . $faqData['title'] . '</h2>');
         $this->pdf->Ln();
-        $this->pdf->Ln();
+        $this->pdf->Ln(5);
 
         if ($this->config->get('main.enableMarkdownEditor')) {
             $this->pdf->WriteHTML(str_replace('../', '', (string) $this->parsedown->text($faqData['content'])));
@@ -206,6 +209,7 @@ class Pdf extends Export
         $this->pdf->Ln(10);
         $this->pdf->Ln();
         $this->pdf->SetFont($this->pdf->getCurrentFont(), '', 9);
+        /*
         $this->pdf->Write(5, Translation::get('ad_entry_solution_id') . ': #' . $faqData['solution_id']);
 
         // Check if the author name should be visible, according to the GDPR option
@@ -221,7 +225,7 @@ class Pdf extends Export
         $this->pdf->Write(5, Translation::get('msgAuthor') . ': ' . $author);
         $this->pdf->Ln();
         $this->pdf->Write(5, Translation::get('msgLastUpdateArticle') . $faqData['date']);
-
+        */
         return $this->pdf->Output($filename);
     }
 }

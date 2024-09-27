@@ -320,14 +320,14 @@ class Wrapper extends TCPDF
         // Set custom header and footer
         $this->setCustomHeader();
 
-        if (array_key_exists($this->category, $this->categories)) {
-            $title = $this->categories[$this->category]['name'];
-        } else {
-            $title = '';
+        if ($this->categories) {
+            $title = join("/", $this->categories) ;
         }
 
+        
         $this->SetTextColor(0, 0, 0);
-        $this->SetFont($this->currentFont, 'B', 18);
+        
+        $this->SetFont($this->currentFont, 'N', 8);
 
         if (0 < Strings::strlen($this->customHeader)) {
             $this->writeHTMLCell(0, 0, 0, 0, $this->customHeader);
@@ -342,13 +342,17 @@ class Wrapper extends TCPDF
                 0,
                 false,
                 true,
-                'C'
+                'L'
             );
         } else {
-            $this->MultiCell(0, 10, html_entity_decode((string) $title, ENT_QUOTES, 'utf-8'), 0, 'C');
-            $this->SetMargins(PDF_MARGIN_LEFT, $this->getLastH() + 5, PDF_MARGIN_RIGHT);
+            $this->MultiCell(0, 8, html_entity_decode((string) $title, ENT_QUOTES, 'utf-8'), 0, 'L');
         }
-    }
+
+        $this->SetFont($this->currentFont, 'B', 12);
+        $this->writeHTML('<div style="background-color: #eee;">'.$this->title.'</div>', true, false, true, false, '');
+        //$this->MultiCell(0, 10, html_entity_decode((string) $this->title, ENT_QUOTES, 'utf-8'), 0, 'L');
+        $this->SetMargins(PDF_MARGIN_LEFT, $this->getLastH() + 20, PDF_MARGIN_RIGHT);
+}
 
     /**
      * Sets custom header.
@@ -387,7 +391,7 @@ class Wrapper extends TCPDF
 
         $currentTextColor = $this->TextColor;
         $this->SetTextColor(0, 0, 0);
-        $this->SetY(-25);
+        $this->SetY(-20);
         $this->SetFont($this->currentFont, '', 10);
         $this->Cell(
             0,
@@ -397,9 +401,9 @@ class Wrapper extends TCPDF
             0,
             'C'
         );
-        $this->SetY(-20);
+        $this->SetY(-15);
         $this->SetFont($this->currentFont, 'B', 8);
-        $this->Cell(0, 10, $footer, 0, 1, 'C');
+        /*$this->Cell(0, 10, $footer, 0, 1, 'C');
         if ($this->enableBookmarks == false) {
             $this->SetY(-15);
             $this->SetFont($this->currentFont, '', 8);
@@ -419,7 +423,7 @@ class Wrapper extends TCPDF
             $urlObj->itemTitle = $this->question;
             $_url = str_replace('&amp;', '&', $urlObj->toString());
             $this->Cell(0, 10, 'URL: ' . $_url, 0, 1, 'C', 0, $_url);
-        }
+        }*/
         $this->TextColor = $currentTextColor;
     }
 
