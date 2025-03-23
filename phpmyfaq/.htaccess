@@ -97,7 +97,7 @@ Header set Access-Control-Allow-Headers "Content-Type, Authorization"
         RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
     </IfModule>
     # the path to your phpMyFAQ installation
-    RewriteBase /
+    RewriteBase /wfkb4/
     # Exclude assets from being handled by Symfony Router
     RewriteRule ^(admin/assets)($|/) - [L]
     # Error pages

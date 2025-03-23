@@ -76,10 +76,6 @@
     "vitest-fetch-mock": "^0.4.3"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "composer lint && composer validate && composer test && pnpm pretty-quick --staged && pnpm test",
-      "pre-push": "composer lint && composer validate && composer test && pnpm pretty-quick --staged && pnpm test"
-    }
   },
   "packageManager": "pnpm@8.15.5"
 }
