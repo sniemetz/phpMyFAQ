@@ -1,0 +1,78 @@
+{% extends 'index.twig' %}
+
+{% block content %}
+<section class="col-12">
+  <h2 class="mb-4 border-bottom">{{ 'msgContact' | translate }}</h2>
+
+  <div class="row mb-2">
+    <div class="col">
+      <div class="spinner-border text-primary d-none" id="loader" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div id="pmf-contact-response"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xxl-4 col-xl-5 col-lg-6">
+      {% if msgContactOwnText %}
+      <p>{{ msgContactOwnText | raw }}</p>
+      {% endif %}
+      <p>
+        {{ 'msgContactPrivacyNote' | translate }}
+        <a title="{{ 'msgPrivacyNote' | translate }}" href="{{ privacyURL }}" target="_blank" rel="noopener">
+          {{ msgPrivacyNote }}
+        </a>
+      </p>
+    </div>
+    <div class="col-lg-6 offset-xl-1 offset-xxl-2 mb-4">
+
+      <form id="pmf-contact-form" action="#" method="post" class="needs-validation" novalidate>
+        <input type="hidden" name="lang" id="lang" value="{{ lang }}">
+        <div class="row g-4">
+          <div class="col-sm-6 mb-2">
+            <label for="name" class="form-label">{{ 'msgNewContentName' | translate }}</label>
+            <input type="text" class="form-control form-control-lg" id="name" name="name"
+                   value="{{ defaultContentName }}" required>
+            <div class="invalid-feedback">{{ 'msgErrorEnterFullName' | translate }}</div>
+          </div>
+          <div class="col-sm-6 mb-2">
+            <label for="email" class="form-label">{{ 'msgNewContentMail' | translate }}</label>
+            <input type="email" class="form-control form-control-lg" id="email" name="email"
+                   value="{{ defaultContentMail }}" required>
+            <div class="invalid-feedback">{{ 'msgErrorEnterValidMail' | translate }}</div>
+          </div>
+          <div class="col-12 mb-2">
+            <label for="question" class="form-label">{{ 'msgMessage' | translate }}</label>
+            <textarea class="form-control form-control-lg" id="question" name="question" rows="3" required=""></textarea>
+            <div class="invalid-feedback">{{ 'msgErrorEnterMessage' | translate }}</div>
+          </div>
+
+          {{ captchaFieldset | raw }}
+
+          <div class="col-12">
+            <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto" id="pmf-submit-contact"
+                    data-pmf-form="submit-contact">
+              {{ 'msgNewContentSubmit' | translate }}
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- PLEASE DO NOT REMOVE THE COPYRIGHT NOTICE - THANK YOU -->
+  <div class="text-center border-top">
+    <small>
+      Template Design by <a href="https://www.rinne.info">Thorsten Rinne</a>
+      <br>
+      &copy; 2001-{{ currentYear }} by
+      <a target="_blank" rel="noopener" href="https://www.phpmyfaq.de/">phpMyFAQ Team</a> under the
+      <a target="_blank" rel="noopener" href="https://www.mozilla.org/MPL/2.0/">Mozilla Public License 2.0</a>. All
+      rights reserved.<br>
+    </small>
+  </div>
+  <!-- PLEASE DO NOT REMOVE THE COPYRIGHT NOTICE - THANK YOU -->
+</section>
+
+{% endblock %}

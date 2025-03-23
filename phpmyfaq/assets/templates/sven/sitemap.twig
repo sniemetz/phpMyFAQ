@@ -1,0 +1,25 @@
+{% extends 'index.twig' %}
+
+{% block content %}
+<section class="col-12">
+  <h2 class="mb-4 border-bottom">{{ 'msgSitemap' | translate }} » {{ pageHeader }}</h2>
+
+  <div class="navbar navbar-expand-lg">
+    <ul class="nav">
+      {% for letter in letters %}
+      <a class="btn btn-outline-primary me-1" href="{{ letter.url }}">{{ letter.letter }}</a>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <ul class="my-4">
+    {% for faq in faqs %}
+    <li>
+      <a title="{{ faq.question }}" href="{{ faq.url }}">{{ faq.question }}</a>
+      <br>{{ faq.answer }}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% endblock %}

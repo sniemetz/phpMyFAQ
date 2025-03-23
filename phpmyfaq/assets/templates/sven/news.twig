@@ -1,0 +1,77 @@
+{% extends 'index.twig' %}
+
+{% block content %}
+<div class="row g-5">
+  <div class="col-md-8">
+    <h2 class="mb-4 border-bottom">{{ newsHeader }}</h2>
+
+    <article class="pmf-news-body pb-4 mb-4 border-bottom">{{ mainPageContent | raw }}</article>
+
+    <p class="d-print-none">{{ writeCommentMsg | raw }}</p>
+    <div id="pmf-comment-add-success"></div>
+    <div id="pmf-comment-add-error"></div>
+    <div class="d-print-none" id="comments">{{ renderComments | raw }}</div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="position-sticky" style="top: 2rem">
+      <div class="p-4 mb-3 bg-light-subtle border rounded">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">{{ writeDateMsg | raw }}</li>
+          <li class="list-group-item">{{ writeAuthor }}</li>
+          <li class="list-group-item">{{ editThisEntry | raw }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="pmf-modal-add-comment" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="commentModalLabel">{{ msgCommentHeader }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ msgCancel }}"></button>
+      </div>
+      <div class="modal-body">
+        <div id="pmf-add-comment-error"></div>
+
+        <form id="pmf-add-comment-form" action="#" method="post" class="needs-validation" novalidate>
+          <input type="hidden" name="newsId" id="newsId" value="{{ newsId }}">
+          <input type="hidden" name="lang" id="lang" value="{{ newsLang }}">
+          <input type="hidden" name="type" id="type" value="news">
+          {{ csrfInput | raw }}
+
+          <div class="row mb-2">
+            <div class="col">
+              <label class="sr-only" for="user">{{ msgNewContentName }}</label>
+              <input type="text" name="user" id="user" class="form-control" placeholder="{{ msgNewContentName }}"
+                     value="{{ defaultContentName }}" required>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <label class="sr-only" for="mail">{{ msgNewContentMail }}</label>
+              <input type="email" name="mail" id="mail" class="form-control" placeholder="{{ msgNewContentMail }}"
+                     value="{{ defaultContentMail }}" required>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col">
+              <textarea rows="10" name="comment_text" id="comment_text" class="form-control"
+                        placeholder="{{ msgYourComment }}" required></textarea>
+            </div>
+          </div>
+
+          {{ captchaFieldset | raw }}
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ msgCancel }}</button>
+        <button type="button" class="btn btn-primary" id="pmf-button-save-comment">{{ msgNewContentSubmit }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

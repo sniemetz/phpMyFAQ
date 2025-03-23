@@ -1,0 +1,26 @@
+{% extends 'index.twig' %}
+
+{% block content %}
+<section class="col-12">
+  <h1 class="mb-4 border-bottom">{{ pageHeader }}</h1>
+  <div class="row mb-4">
+    {% for glossary in glossaryItems %}
+    <div class="col-sm-6 mb-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ glossary['item'] }}</h5>
+          <p class="card-text">{{ glossary['definition'] }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="pagination justify-content-center">
+    <div>
+      <div>{{ pagination | raw }}</div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
