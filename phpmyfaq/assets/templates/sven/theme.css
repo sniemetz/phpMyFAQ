@@ -41,3 +41,12 @@
   --bs-pmf-footer: #142f48;
   --bs-pmf-background: #9eb6c9;
 }
+
+nav.navbar {
+  z-index: 100;
+  position: sticky;
+  top: 0;
+}
+body {
+  height: 200vh;
+}
