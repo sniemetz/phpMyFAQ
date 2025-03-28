@@ -127,6 +127,7 @@ li.searchNav {
 div.col div.card-cover {
   background-size: 100px;
   background-position: center right;
+  background-color: transparent;
 }
 div.card-cover a.cat {
   margin: 0; 
@@ -134,4 +135,14 @@ div.card-cover a.cat {
   height:100%; 
   width: 100%; 
   display:block
+}
+
+div.card-cover a.btn:hover {
+  color: initial;
+  background-color: initial;
+}
+
+div.cardWrapper:hover {
+  background-color: var(--bs-secondary);
+  border-color: var(--bs-dark);
 }
