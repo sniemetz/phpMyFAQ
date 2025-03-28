@@ -42,10 +42,12 @@
   --bs-pmf-background: #9eb6c9;
 }
 
+/* sticky topnav */
 body {
   height: 200vh;
 }
 
+/* expandasearch */
 .search input:focus {
   /* so search text doesn't touch button or icon */
   padding-right: 110px;
@@ -113,4 +115,23 @@ li.searchNav {
 .searchContainer .bi-search:before{
   content: "×";
   font-weight: bold;
+}
+
+
+/* homepage category tiles */
+@media (min-width: 992px) {
+  .row-cols-lg-3>* {
+      width: 25%;
+  }
+}
+div.col div.card-cover {
+  background-size: 100px;
+  background-position: center right;
+}
+div.card-cover a.cat {
+  margin: 0; 
+  position: absolute; 
+  height:100%; 
+  width: 100%; 
+  display:block
 }
