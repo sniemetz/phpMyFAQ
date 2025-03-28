@@ -143,6 +143,5 @@ div.card-cover a.btn:hover {
 }
 
 div.cardWrapper:hover {
-  background-color: var(--bs-secondary);
-  border-color: var(--bs-dark);
+  background-color: var(--bs-pmf-footer);
 }
