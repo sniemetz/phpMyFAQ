@@ -1,0 +1,30 @@
+
+
+category delete: force replacement
+    can't be a XHR call
+
+categoryt create 
+https://localhost/wfkb4/admin/category/create
+An error occurred: Duplicate entry '16' for key 'PRIMARY' at line 312 at /home/sven/Documents/GitHub/phpMyFAQ4/phpmyfaq/src/phpMyFAQ/Database/Mysqli.php
+
+
+
+https://localhost/wfkb4/admin/category/update
+
+phpMyFAQ Fatal error
+Uncaught exception: 'TypeError'
+
+Message: 'phpMyFAQ\Entity\CategoryEntity::setShowHome(): Argument #1 ($showHome) must be of type ?bool, int given, called in /home/sven/Documents/GitHub/phpMyFAQ4/phpmyfaq/src/phpMyFAQ/Controller/Administration/CategoryController.php on line 594'
+
+Stack trace:
+
+#0 /home/sven/Documents/GitHub/phpMyFAQ4/phpmyfaq/src/phpMyFAQ/Controller/Administration/CategoryController.php(594): phpMyFAQ\Entity\CategoryEntity->setShowHome()
+#1 [internal function]: phpMyFAQ\Controller\Administration\CategoryController->update()
+#2 /home/sven/Documents/GitHub/phpMyFAQ4/phpmyfaq/src/phpMyFAQ/Application.php(125): call_user_func_array()
+#3 /home/sven/Documents/GitHub/phpMyFAQ4/phpmyfaq/src/phpMyFAQ/Application.php(55): phpMyFAQ\Application->handleRequest()
+#4 /home/sven/Documents/GitHub/phpMyFAQ4/phpmyfaq/admin/index.php(44): phpMyFAQ\Application->run()
+#5 {main}
+Thrown in '/home/sven/Documents/GitHub/phpMyFAQ4/phpmyfaq/src/phpMyFAQ/Entity/CategoryEntity.php' on line 172
+
+
+
