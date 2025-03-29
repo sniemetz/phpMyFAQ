@@ -156,7 +156,8 @@ div.cardWrapper {
   height: 100%;
 }
 div.cardWrapper:hover {
-  background-color: var(--bs-pmf-footer);
+  opacity: 97%;
+  box-shadow: 0 0 5px 5px rgb(93 88 135 / 43%) !important;
 }
 
 div.card-cover h3 {
