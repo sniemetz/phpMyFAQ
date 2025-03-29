@@ -125,8 +125,6 @@ li.searchNav {
   }
 }
 div.col div.card-cover {
-  background-size: 60px;
-  background-position: right top;
   background-color: transparent;
   min-height: 4rem;
 }
@@ -156,10 +154,20 @@ div.cardWrapper {
   height: 100%;
 }
 div.cardWrapper:hover {
-  background-color: var(--bs-pmf-footer);
+  transform: scale(102%);
+  box-shadow: 0px 16px 48px 0px rgba(0, 0, 0, 0.4) !important;
 }
 
 div.card-cover h3 {
   margin-right: 3rem;
   padding: 0;
+}
+div.catImg {
+  background-size: contain;
+  background-position: right top;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
