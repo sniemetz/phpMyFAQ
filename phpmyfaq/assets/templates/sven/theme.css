@@ -171,3 +171,7 @@ div.catImg {
   right: 0;
   top: 0;
 }
+
+ul.autocomplete {
+  z-index: 1200;
+}

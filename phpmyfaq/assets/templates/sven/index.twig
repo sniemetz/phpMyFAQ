@@ -58,7 +58,8 @@
 <!-- SEARCH -->
 {% if not isMaintenanceMode %}
 <div class="searchContainer">
-  <div class="row height d-flex justify-content-center align-items-center">
+ {% if not searchTerm %}
+   <div class="row height d-flex justify-content-center align-items-center">
     <div class="">
       <div id="expandaSearch" class="search searchClosed">
         <form action="./search.html" id="search" method="post" role="search">
@@ -70,6 +71,7 @@
       </div>
     </div>
   </div>
+ {% endif %}
 </div>
 {% endif %}
       <ul class="navbar-nav flex-row flex-wrap ms-md-3">

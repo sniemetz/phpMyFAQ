@@ -3,6 +3,7 @@ let s = document.getElementById('expandaSearch');
 let n = document.querySelector('#pmf-top-navbar ul');
 let c = document.querySelector('.searchContainer .bi-search');
 function showSearch (e) {
+    if (!s.querySelector('button').disabled) return;
     e.stopPropagation();
     n.style.display = "none";
     s.querySelector('input').value = "";
