@@ -14,13 +14,17 @@
 <div class="row row-cols-1 row-cols-lg-3 align-items-stretch justify-content-center g-4 py-4 mb-4">
   {% for decks in startPageCategoryDecks %}
     <div class="col">
-      <div class="card card-cover h-100 overflow-hidden text-bg-light rounded-3 shadow-lg p-1"
+      <div class="cardWrapper btn-primary bg-gradient rounded-3 shadow-lg py-2 ps-3 pe-2">
+      <div class="card card-cover h-100 overflow-hidden">
+      <div class='catImg'
       {% if decks['image'] != '' %}
-        style="background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url('{{ decks['image'] }}')"
+        style="background-repeat: no-repeat; background-image: url('{{ decks['image'] }}')"
       {% endif %}
-      >
-        <h3 class="pt-5 mt-5 mb-3 fw-semibold text-center">{{ decks['name'] }}</h3>
-        <a class="btn btn-primary bg-gradient" href="{{ decks['url'] }}">{{ 'msgGoToCategory' | translate }}</a>
+      >      </div>
+
+        <h3 class="fw-semibold text-light">{{ decks['name'] }}</h3>
+        <a class=" cat" href="{{ decks['url'] }}"></a>
+      </div>
       </div>
     </div>
   {% endfor %}
@@ -29,7 +33,42 @@
 
 <!-- Start page content -->
 <div class="row masonry-grid">
-  <!-- Sticky FAQs -->
+<!-- News -->
+  {% if newsList is not empty %}
+  <div class="col-sm-6 col-lg-4 mb-4">
+    <div class="card shadow">
+      <div class="card-body">
+        <h5 class="card-title text-center mb-4">
+          <i class="bi bi-newspaper"></i>
+          {{ msgNewsHeader }}
+        </h5>
+        <ol class="list-unstyled">
+          {% for news in newsList %}
+            <li class="border-bottom pb-2 mb-2">
+              <h4 class="h6 mb-2">
+                <a class="news-entries" data-bs-toggle="tooltip" data-bs-placement="top"
+                   title="{{ news.header }}" href="{{ news.url }}">
+                  {{ news.header }}
+                </a>
+              </h4>
+              <p>
+                {{ news.content }}
+              </p>
+              <div class="d-flex align-items-center text-muted">
+                <small class="pe-2 me-2">
+                  <i aria-hidden="true" class="bi bi-calendar-date"></i>
+                  {{ news.date }}
+                </small>
+              </div>
+            </li>
+          {% endfor %}
+        </ol>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+<!-- Sticky FAQs -->
   <div class="col-sm-6 col-lg-4 mb-4">
     <div class="card shadow">
       <div class="card-body">
@@ -122,77 +161,7 @@
   </div>
   {% endif %}
 
-  <!-- Trending FAQs -->
-  {% if trendingRecordsList is not empty %}
-  <div class="col-sm-6 col-lg-4 mb-4">
-    <div class="card shadow">
-      <div class="card-body">
-        <h5 class="card-title text-center mb-4">
-          <i class="bi bi-graph-up-arrow"></i>
-          {{ msgTrendingFAQs }}
-        </h5>
-        <ol class="list-unstyled">
-          {% for trending in trendingRecordsList %}
-            <li class="border-bottom pb-2 mb-2">
-              <h4 class="h6 mb-2">
-                <a class="latest-entries" data-bs-toggle="tooltip" data-bs-placement="top"
-                   title="{{ trending.preview }}" href="{{ trending.url }}">
-                  {{ trending.title | raw }}
-                </a>
-              </h4>
-              <div class="d-flex align-items-center text-muted">
-                <small class="pe-2 me-2 border-end">
-                  <i aria-hidden="true" class="bi bi-eye"></i>
-                  {{ trending.visits }}
-                </small>
-                <small class="pe-2 me-2">
-                  <i aria-hidden="true" class="bi bi-calendar-date"></i>
-                  {{ trending.date }}
-                </small>
-              </div>
-            </li>
-          {% endfor %}
-        </ol>
-      </div>
-    </div>
-  </div>
-  {% endif %}
-
-  <!-- News -->
-  {% if newsList is not empty %}
-  <div class="col-sm-6 col-lg-4 mb-4">
-    <div class="card shadow">
-      <div class="card-body">
-        <h5 class="card-title text-center mb-4">
-          <i class="bi bi-newspaper"></i>
-          {{ msgNewsHeader }}
-        </h5>
-        <ol class="list-unstyled">
-          {% for news in newsList %}
-            <li class="border-bottom pb-2 mb-2">
-              <h4 class="h6 mb-2">
-                <a class="news-entries" data-bs-toggle="tooltip" data-bs-placement="top"
-                   title="{{ news.header }}" href="{{ news.url }}">
-                  {{ news.header }}
-                </a>
-              </h4>
-              <p>
-                {{ news.content }}
-              </p>
-              <div class="d-flex align-items-center text-muted">
-                <small class="pe-2 me-2">
-                  <i aria-hidden="true" class="bi bi-calendar-date"></i>
-                  {{ news.date }}
-                </small>
-              </div>
-            </li>
-          {% endfor %}
-        </ol>
-      </div>
-    </div>
-  </div>
-  {% endif %}
-
+  
   <!-- Tag Cloud -->
   {% if tagsList is not empty %}
   <div class="col-sm-6 col-lg-4 mb-4">
