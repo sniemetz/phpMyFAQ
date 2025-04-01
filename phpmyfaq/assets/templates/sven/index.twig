@@ -15,12 +15,13 @@
 
   {% if isDebugEnabled %}<link href="{{ baseHref }}assets/public/debugMode.css" rel="stylesheet">{% endif %}
 
-  <link href="{{ baseHref }}assets/public/styles.css" rel="stylesheet" media="screen">
-  <link href="{{ baseHref }}assets/templates/{{ tplSetName }}/theme.css" rel="stylesheet" media="screen">
+  <link href="./assets/public/styles.css" rel="stylesheet" media="screen">
+  <link href="./assets/templates/{{ tplSetName }}/theme.css" rel="stylesheet" media="screen">
+  
   <style type="text/css" media="screen">
     {{ customCss }}
   </style>
-  <link href="{{ baseHref }}assets/images/favicon.ico" rel="shortcut icon">
+  <link href="./assets/images/favicon.ico" rel="shortcut icon">
   <link href="{{ currentPageUrl }}" rel="canonical">
 
   {% if richSnippetsEnabled %}
@@ -30,10 +31,10 @@
 </head>
 <body class="pmf-page-wrapper pmf-template-{{ tplSetName }}" dir="{{ dir }}">
 
-<nav class="navbar navbar-expand-lg navbar-dark p-1 text-bg-pmf-nav border-bottom sticky-top">
+<nav class="navbar navbar-expand-lg navbar-dark p-3 text-bg-pmf-nav border-bottom sticky-top">
   <div class="container">
     <a class="navbar-brand" href="{{ faqHome }}" id="phpmyfaq-logo" title="{{ header }}">
-      <img width="130" height="40" src="{{ baseHref }}assets/images/logo-transparent.svg" alt="{{ title }}"
+      <img width="130" height="40" src="./assets/images/logo-transparent.svg" alt="{{ title }}"
            title="{{ title }}">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#pmf-top-navbar"
@@ -49,31 +50,31 @@
               <a class="pmf-nav-link {{ item['active'] }}" href="{{ item['link'] }}">{{ item['name'] }}</a>
             </li>
           {% endfor %}
+        {% endif %}
             <li class="nav-item pmf-nav-link searchNav">
               <a class="pmf-nav-link {{ item['active'] }}" href="./search.html">{{ searchBox }}</a>
             </li>
-          {% endif %}
       </ul>
-      <!-- SEARCH -->
-      {% if not isMaintenanceMode %}
-      <div class="searchContainer ms-auto">
-      {% if not searchTerm %}
-        <div class="row height d-flex justify-content-center align-items-center">
-          <div class="">
-            <div id="expandaSearch" class="search searchClosed">
-              <form action="./search.html" id="search" method="post" role="search">
-                <i class="bi bi-close"></i>
-                <input autocomplete="off" type="text" class="form-control form-control-lg" id="pmf-search-autocomplete"
-                      name="search" placeholder="{{ searchBox }} ..." maxlength="255" value="{{ searchTerm }}">
-                <button disabled=disabled type="submit" class="btn btn-primary btn-lg">{{ searchBox }}</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      {% endif %}
+<!-- SEARCH -->
+{% if not isMaintenanceMode %}
+<div class="searchContainer">
+ {% if not searchTerm %}
+   <div class="row height d-flex justify-content-center align-items-center">
+    <div class="">
+      <div id="expandaSearch" class="search searchClosed">
+        <form action="./search.html" id="search" method="post" role="search">
+          <i class="bi bi-close"></i>
+          <input autocomplete="off" type="text" class="form-control form-control-lg" id="pmf-search-autocomplete"
+                 name="search" placeholder="{{ searchBox }} ..." maxlength="255" value="{{ searchTerm }}">
+          <button disabled=disabled type="submit" class="btn btn-primary btn-lg">{{ searchBox }}</button>
+        </form>
       </div>
-      {% endif %}
-      <ul class="navbar-nav flex-row flex-wrap  ms-md-3">
+    </div>
+  </div>
+ {% endif %}
+</div>
+{% endif %}
+      <ul class="navbar-nav flex-row flex-wrap ms-md-3">
         <li class="nav-item dropdown">
           <button type="button" class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle"
                   data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static">
@@ -207,5 +208,7 @@
 <script type="module" src="./assets/public/cookieConsent.js"></script>
 {% endif %}
 <script type="module" src="./assets/public/frontend.js"></script>
+<script src="./assets/templates/{{ tplSetName }}/theme.js"></script>
+
 </body>
 </html>

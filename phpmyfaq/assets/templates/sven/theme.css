@@ -1,0 +1,97 @@
+/**
+ * phpMyFAQ 4.0 default theme
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public License,
+ * v. 2.0. If a copy of the MPL was not distributed with this file, You can
+ * obtain one at https://mozilla.org/MPL/2.0/.
+ *
+ * @package   phpMyFAQ
+ * @author    Thorsten Rinne <thorsten@phpmyfaq.de>
+ * @copyright 2024-2025 phpMyFAQ Team
+ * @license   https://www.mozilla.org/MPL/2.0/ Mozilla Public License Version 2.0
+ * @link      https://www.phpmyfaq.de
+ * @since     2024-09-01
+ */
+
+:root,
+[data-bs-theme='light'] {
+  --bs-light: #eceff9;
+  --bs-dark: #060508;
+  --bs-primary: #083c83;
+  --bs-secondary: #1d646a;
+  --bs-info: #40b0ae;
+  --bs-success: #0aa05c;
+  --bs-warning: #e1ca0a;
+  --bs-danger: #f01704;
+  --bs-pmf-nav: #2f3035;
+  --bs-pmf-footer: #142f48;
+  --bs-pmf-background: #9eb6c9;
+}
+
+[data-bs-theme='dark'] {
+  --bs-light: #eceff9;
+  --bs-dark: #060508;
+  --bs-primary: #083c83;
+  --bs-secondary: #1d646a;
+  --bs-info: #40b0ae;
+  --bs-success: #0aa05c;
+  --bs-warning: #e1ca0a;
+  --bs-danger: #f01704;
+  --bs-pmf-nav: #2f3035;
+  --bs-pmf-footer: #142f48;
+  --bs-pmf-background: #9eb6c9;
+}
+
+/* homepage category tiles */
+@media (min-width: 992px) {
+  .row-cols-lg-3>* {
+      width: 25%;
+  }
+}
+div.col div.card-cover {
+  background-color: transparent;
+  min-height: 4rem;
+}
+div.card-cover a.cat {
+  margin: 0; 
+  position: absolute; 
+  height:100%; 
+  width: 100%; 
+  display:block
+}
+
+div.card {
+  border: none
+}
+
+div.col {
+  display: flex;
+  justify-content: left;
+}
+
+div.card-cover a.btn:hover {
+  color: initial;
+  background-color: initial;
+}
+div.cardWrapper {
+  width: 100%;
+  height: 100%;
+}
+div.cardWrapper:hover {
+  transform: scale(102%);
+  box-shadow: 0px 16px 48px 0px rgba(0, 0, 0, 0.4) !important;
+}
+
+div.card-cover h3 {
+  margin-right: 3rem;
+  padding: 0;
+}
+div.catImg {
+  background-size: contain;
+  background-position: right top;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
